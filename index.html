@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 HAPPY BIRTHDAY 🎂 VANDNA MAM 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #D2D2D2;
+            background-repeat: no-repeat;
+            background-size: cover;
+            animation: bodyBackgroundImage 30s infinite;
+        }
+
+        @keyframes bodyBackgroundImage {
+            0% {
+                background-image: url(./images/animation/green-mountain-coast-nture.jpg);
+            }
+
+            20% {
+                background-image: url(./images/animation/green-pretty-mountains-nature-lake.jpg);
+            }
+
+            40% {
+                background-image: url(./images/animation/clean-lake-mountains-range-trees-nature-4k.jpg);
+            }
+
+            60% {
+                background-image: url(./images/animation/nature-dolomite-mountains-italy.jpg);
+            }
+
+            80% {
+                background-image: url(./images/animation/phang-nga-bay-horizon-aerial-view.jpg);
+            }
+
+            100% {
+                background-image: url(./images/animation/torres-del-paine-national-park-5k-golden-summit.jpg);
+            }
+        }
+
+        body::before {
+            position: absolute;
+            width: min(1400px, 90vw);
+            top: 10%;
+            left: 50%;
+            height: 90%;
+            transform: translateX(-50%);
+            content: '';
+            background-image: url(images/bg.png);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: top center;
+            pointer-events: none;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="banner">
+        <div class="slider" style="--quantity: 13">
+            <div class="item" style="--position: 1"><img src="images/v1.jpg" alt=""></div>
+            <div class="item" style="--position: 2"><img src="images/v2.jpg" alt=""></div>
+            <div class="item" style="--position: 3"><img src="images/v3.jpeg" alt=""></div>
+            <div class="item" style="--position: 4"><img src="images/v4.jpeg" alt=""></div>
+            <div class="item" style="--position: 5"><img src="images/v5.jpeg" alt=""></div>
+            <div class="item" style="--position: 6"><img src="images/v6.jpeg" alt=""></div>
+            <div class="item" style="--position: 7"><img src="images/v7.jpeg" alt=""></div>
+            <div class="item" style="--position: 8"><img src="images/v8.jpeg" alt=""></div>
+            <div class="item" style="--position: 9"><img src="images/v9.jpeg" alt=""></div>
+            <div class="item" style="--position: 10"><img src="images/v10.jpeg" alt=""></div>
+            <div class="item" style="--position: 11"><img src="images/v11.jpg" alt=""></div>
+            <div class="item" style="--position: 12"><img src="images/v12.jpg" alt=""></div>
+            <div class="item" style="--position: 13"><img src="images/v13.jpg" alt=""></div>
+            <div class="item" style="--position: 13"><img src="images/v14.jpeg" alt=""></div>
+            <div class="item" style="--position: 13"><img src="images/v15.jpg" alt=""></div>
+            <div class="item" style="--position: 13"><img src="images/v16.jpg" alt=""></div>
+        </div>
+        <div class="content">
+            <h1 data-content="HAPPY BIRTHDAY VANDNA MAM">
+                🎂 HAPPY BIRTHDAY 🎂 <br />🎂 VANDNA MAM 🎂
+            </h1>
+            <div class="model"></div>
+        </div>
+    </div>
+    <script>
+        function fadeIn(element, duration) {
+            element.style.opacity = 0;
+            element.style.display = "block";
+
+            let last = +new Date();
+            let tick = function () {
+                element.style.opacity = +element.style.opacity + (new Date() - last) / duration;
+                last = +new Date();
+
+                if (+element.style.opacity < 1) {
+                    (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+                }
+            };
+
+            tick();
+        }
+
+        function fadeOut(element, duration) {
+            element.style.opacity = 1;
+
+            let last = +new Date();
+            let tick = function () {
+                element.style.opacity = +element.style.opacity - (new Date() - last) / duration;
+                last = +new Date();
+
+                if (+element.style.opacity > 0) {
+                    (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+                } else {
+                    element.style.display = "none";
+                }
+            };
+
+            tick();
+        }
+        const images = [
+            "images/v-model.png",
+            "images/v-model1.png",
+            "images/v-model2.png"
+        ];
+
+        const fadeInTime = 1000;
+        const fadeOutTime = 10000;
+        let fade = "in";
+        let lastFade = +new Date();
+        let currentFade = +new Date();
+
+        let index = 0;
+        const modelDiv = document.querySelector(".model");
+        let image = images[index];
+        modelDiv.style.backgroundImage = `url(${image})`;
+
+        function changeBackground() {
+            currentFade = +new Date();
+            if (fade === "in" && currentFade - lastFade > fadeOutTime) {
+                lastFade = currentFade;
+                fadeOut(modelDiv, 1000);
+                fade = "out";
+            } else if (fade === "out" && currentFade - lastFade > fadeInTime) {
+                lastFade = currentFade;
+                index = (index + 1) % images.length;
+                image = images[index];
+                console.log("image index: ", index);
+                modelDiv.style.backgroundImage = `url(${image + "?q=" + new Date().getTime()})`;
+                fadeIn(modelDiv, 1000);
+                fade = "in";
+            }
+        }
+
+        setInterval(changeBackground, 1000); // Change every 4 seconds
+    </script>
+</body>
+
+</html>

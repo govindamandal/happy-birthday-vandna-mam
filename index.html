@@ -86,7 +86,7 @@
         </div>
         <div class="content">
             <h1 data-content="HAPPY BIRTHDAY VANDNA MAM">
-                🎂 HAPPY BIRTHDAY 🎂 <br />🎂 VANDNA MAM 🎂
+                🎂 HAPPY BIRTHDAY 🎂<br />🎂 VANDNA MAM 🎂
             </h1>
             <div class="model"></div>
         </div>
@@ -133,7 +133,7 @@
         ];
 
         const fadeInTime = 1000;
-        const fadeOutTime = 10000;
+        const fadeOutTime = 9000;
         let fade = "in";
         let lastFade = +new Date();
         let currentFade = +new Date();
@@ -147,15 +147,15 @@
             currentFade = +new Date();
             if (fade === "in" && currentFade - lastFade > fadeOutTime) {
                 lastFade = currentFade;
-                fadeOut(modelDiv, 1000);
+                fadeOut(modelDiv, 800);
                 fade = "out";
             } else if (fade === "out" && currentFade - lastFade > fadeInTime) {
                 lastFade = currentFade;
                 index = (index + 1) % images.length;
                 image = images[index];
                 console.log("image index: ", index);
-                modelDiv.style.backgroundImage = `url(${image + "?q=" + new Date().getTime()})`;
-                fadeIn(modelDiv, 1000);
+                modelDiv.style.backgroundImage = `url(${image})`;
+                fadeIn(modelDiv, 800);
                 fade = "in";
             }
         }
